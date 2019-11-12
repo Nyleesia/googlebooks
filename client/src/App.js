@@ -1,16 +1,26 @@
 import React from 'react';
-import './App.css';
-import BookList from "./components/bookList"; 
-import BooksCard from "./components/booksCard"; 
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Footer from "./components/footer"; 
 import Navbar from "./components/navbar"; 
-import SearchForm from "./components/searchForm"; 
+import ToLibrary  from "./pages/library"; 
+import NoResults from "./pages/noResults"; 
+import  Search from "./pages/search"; 
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Search} />
+          <Route exact path="/saved" component={ToLibrary} />
+          <Route exact path="/saved/:id" component={ToLibrary} />
+          <Route component={NoResults} /> 
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
