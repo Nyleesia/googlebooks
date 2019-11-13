@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-const url = process.env.MONGODB_URI || "mongodb://localhost:27017/localhost/googlebooks";
+const url = process.env.MONGODB_URI || "mongodb://test:tester1@ds029817.mlab.com:29817/heroku_cd8r7rf2";
 
 mongoose.connect( url, {
     useCreateIndex: true, 
