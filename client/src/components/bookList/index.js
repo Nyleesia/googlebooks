@@ -1,6 +1,6 @@
 import React from "react";
 import {Row, Column} from "../grid"
-
+import {handleSubmitButton} from './'
 const BookList = (props) => {
     return (
         props.books.length === 0
@@ -20,6 +20,7 @@ const BookList = (props) => {
                             <div className="result">
                                 <h3>Results:</h3>
                                     {props.books.map(book => {
+                                        console.log(book);
                                         return (
                                             <li className="search-list list-group-item">
                                                 <Row 

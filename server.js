@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-const url = process.env.MONGODB_URI || "mongodb://test:tester1@ds029817.mlab.com:29817/heroku_cd8r7rf2";
+const url = process.env.MONGODB_URI || "mongodb://localhost:27017/Book";
 
 mongoose.connect( url, {
     useCreateIndex: true, 
@@ -23,7 +23,7 @@ mongoose.connect( url, {
     useUnifiedTopology: true 
 }, function(err, db) {
     if (err) throw err;
-    console.log(`Database created.`);  
+    console.log(`Database connected.`);  
 });
 
 app.use(routes);

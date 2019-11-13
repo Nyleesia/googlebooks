@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils";
 import Jumbotron from "../../components/jumbotron";
 import { Container} from "../../components/grid";
-import EditLibrary from "../../components/library"
+import EditLibrary from "../../components/library";
 
 class Library extends Component {
     state = {

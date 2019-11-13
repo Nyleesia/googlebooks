@@ -10,14 +10,14 @@ export default {
     },
 
     getBook: function (id) {
-        return axios.get("/api/books/" + id);
+        return axios.get("/api/book/" + id);
     },
 
     saveBook: function (library) {
-        return axios.post("/api/books", library);
+        return axios.post("/api/save/", library);
     },
 
     deleteBook: function (id) {
-        return axios.delete("/api/books/" + id);
+        return axios.delete("/api/delete/" + id);
     }
 }

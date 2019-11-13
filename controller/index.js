@@ -1,10 +1,45 @@
   
-const db = require("../models");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const bookSchema = new Schema({
+  title: { 
+    type: String, 
+    required: true 
+  },
+
+  authoredBy: [
+      {
+        type: String, 
+        required: true
+      }
+  ],
+
+  description: {
+    type: String
+  }, 
+
+  image: {
+    type: String, 
+    trim: true
+  },
+
+  link: {
+    type: String, 
+    trim: true
+  },
+
+  published: { 
+    type: Date, 
+    default: Date.now 
+  }
+});
+
+const BookModel = mongoose.model('Book', bookSchema);
 
 module.exports = {
   findAllBooks: function(req, res) {
     console.log(req.query);
-    return db.Book
+    return BookModel
       .find(req.query)
       .sort({ published: -1 })
       .then(dbModel => res.json(dbModel))
@@ -12,14 +47,14 @@ module.exports = {
   },
   findBookById: function(req, res) {
     console.log(req.params.id);
-    return db.Book
+    return BookModel
       .findById( req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   saveBook: function(req, res) {
     console.log(req.body);
-    return db.Book
+    return BookModel
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -27,14 +62,14 @@ module.exports = {
   updateBook: function(req, res) {
     console.log(req.params.id);
     console.log(req.body);
-    return db.Book
+    return BookModel
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   deleteBook: function(req, res) {
     console.log(req.params.id);
-    return db.Book
+    return BookModel
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

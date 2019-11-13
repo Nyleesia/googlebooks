@@ -9,25 +9,31 @@ router.get(
 ); 
 
 router.get(
-  "/:id", (req, res) => {
+  "/api/book/:id", (req, res) => {
     controller.findBookById (req, res)
 }
 ); 
 
+router.get(
+  "/api/books", (req, res) => {
+    controller.findAllBooks (req, res)
+}
+); 
+
 router.post(
-  "/", (req, res) => {
+  "/api/save", (req, res) => {
     controller.saveBook (req, res)
 }
 ); 
 
 router.put(
-  "/:id", (req, res) => {
+  "/api/update/:id", (req, res) => {
     controller.updateBook (req, res)
 }
 ); 
 
 router.delete(
-  "/:id", (req, res) => {
+  "/api/delete/:id", (req, res) => {
     controller.deleteBook (req, res)
 }
 ); 
